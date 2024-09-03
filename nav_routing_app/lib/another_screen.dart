@@ -16,7 +16,9 @@ class AnotherScreen extends StatelessWidget {
             const Text('Back to First Screen'),
             ElevatedButton(
               child: const Text('Back'),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
