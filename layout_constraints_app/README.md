@@ -1,5 +1,5 @@
-# news_app
-Flutter version : 3.24.0
+# layout_constraints_app
+flutter version : 3.24.0
 A new Flutter project.
 
 ## Getting Started

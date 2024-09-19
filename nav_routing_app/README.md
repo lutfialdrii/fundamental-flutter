@@ -1,5 +1,5 @@
 # nav_routing_app
-
+flutter version : 3.24.0
 A new Flutter project.
 
 ## Getting Started
