@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const UnconstrainedExample());
+  runApp(RowColumnExample());
 }
 
 class MyApp extends StatelessWidget {
@@ -56,6 +56,35 @@ class UnconstrainedExample extends StatelessWidget {
         width: 1000,
         height: 100,
         color: Colors.purple,
+      ),
+    );
+  }
+}
+
+class RowColumnExample extends StatelessWidget {
+  const RowColumnExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Container(
+                color: Colors.red,
+                child: Text('Hello Container Red Consequat sunt ullamco fugiat anim nisi aute. Fugiat occaecat mollit esse adipisicing nulla exercitation aliqua voluptate culpa occaecat cupidatat. Est nisi enim pariatur enim labore officia ad laborum voluptate. Laborum Lorem ad amet fugiat veniam adipisicing exercitation dolor et velit. Anim voluptate laborum eiusmod et aliqua laboris veniam aliqua magna tempor sit occaecat consequat. Reprehenderit dolore sint ut aliqua ea et sint velit id eiusmod eiusmod mollit cillum.'),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                color: Colors.blue,
+                child: Text('Hello Container Blue'),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
