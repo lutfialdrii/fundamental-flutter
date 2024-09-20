@@ -6,3 +6,4 @@
 4. gesture_detector_app
 5. calculator_app
 6. news_theme_app
+7. sliver_exercise_app
