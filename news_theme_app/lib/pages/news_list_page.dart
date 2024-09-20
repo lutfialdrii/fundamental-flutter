@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/data/article.dart';
-import 'package:news_app/detail_page.dart';
+
+import '../data/article.dart';
+import 'detail_page.dart';
 
 class NewsListPage extends StatelessWidget {
   static const routeName = '/article_list';
@@ -31,14 +32,17 @@ class NewsListPage extends StatelessWidget {
   Widget _buildArticleItem(BuildContext context, Article article) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      leading: Image.network(
-        article.urlToImage,
-        width: 100,
-        errorBuilder: (context, error, stackTrace) {
-          return const Center(
-            child: Icon(Icons.error),
-          );
-        },
+      leading: Hero(
+        tag: article.urlToImage,
+        child: Image.network(
+          article.urlToImage,
+          width: 100,
+          errorBuilder: (context, error, stackTrace) {
+            return const Center(
+              child: Icon(Icons.error),
+            );
+          },
+        ),
       ),
       title: Text(article.title),
       subtitle: Text(article.author),

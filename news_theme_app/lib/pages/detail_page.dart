@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/article_web_view.dart';
-import 'package:news_app/data/article.dart';
+
+import 'article_web_view.dart';
+import '../data/article.dart';
 
 class DetailPage extends StatelessWidget {
   static const routeName = '/article_detail';
@@ -17,7 +18,10 @@ class DetailPage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Image.network(article.urlToImage),
+              Hero(
+                tag: article.urlToImage,
+                child: Image.network(article.urlToImage),
+              ),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(

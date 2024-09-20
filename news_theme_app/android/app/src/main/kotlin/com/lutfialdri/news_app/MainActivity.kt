@@ -1,4 +1,4 @@
-package com.lutfialdri.news_app
+package com.lutfialdri.news_theme_app
 
 import io.flutter.embedding.android.FlutterActivity
 

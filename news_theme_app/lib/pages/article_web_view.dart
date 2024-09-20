@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:news_theme_app/widgets/custom_scaffold.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ArticleWebView extends StatelessWidget {
@@ -13,7 +14,7 @@ class ArticleWebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = WebViewController()..loadRequest(Uri.parse(url));
-    return Scaffold(
+    return CustomScaffold(
       body: WebViewWidget(controller: controller),
     );
   }
