@@ -1,5 +1,5 @@
 # news_app
-Flutter version : 3.24.0
+Flutter version : 3.24.3
 A new Flutter project.
 
 ## Getting Started
