@@ -9,3 +9,5 @@
 7. sliver_exercise_app
 8. sliver_list_sliver_grid
 9. cupertino_exercise_app
+10. news_cupertino_app
+11. fooding_app
