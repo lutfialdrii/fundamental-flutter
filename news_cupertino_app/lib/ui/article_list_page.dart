@@ -10,7 +10,7 @@ class ArticleListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlatformWidget(androidBuilder: _buildIos, iosBuilder: _buildIos);
+    return PlatformWidget(androidBuilder: _buildAndroid, iosBuilder: _buildIos);
   }
 
   Scaffold _buildAndroid(BuildContext context) {
