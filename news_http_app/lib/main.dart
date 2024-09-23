@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'common/styles.dart';
+import 'ui/article_web_view.dart';
+import 'data/model/article_result.dart';
 import 'ui/article_detail_page.dart';
-import 'data/model/article.dart';
-import 'ui/detail_page.dart';
 import 'ui/home_page.dart';
 
 void main() {
@@ -36,10 +36,10 @@ class MyApp extends StatelessWidget {
       initialRoute: HomePage.routeName,
       routes: {
         HomePage.routeName: (context) => const HomePage(),
-        DetailPage.routeName: (context) => DetailPage(
+        ArticleDetailPage.routeName: (context) => ArticleDetailPage(
               article: ModalRoute.of(context)?.settings.arguments as Article,
             ),
-        ArticleDetailPage.routeName: (context) => ArticleDetailPage(
+        ArticleWebView.routeName: (context) => ArticleWebView(
               url: ModalRoute.of(context)?.settings.arguments as String,
             )
       },
