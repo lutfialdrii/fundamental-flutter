@@ -14,3 +14,4 @@
 12. setstate_exercise_app
 13. provider_exercise_app
 14. simple_http_request
+15. news_http_app
