@@ -1,5 +1,5 @@
 # setstate_exercise_app
-
+flutter version : 3.24.3
 A new Flutter project.
 
 ## Getting Started
