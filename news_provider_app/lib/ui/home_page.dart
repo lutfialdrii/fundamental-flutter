@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_provider_app/data/api/api_service.dart';
+import 'package:news_provider_app/provider/news_provider.dart';
+import 'package:provider/provider.dart';
 import '../common/styles.dart';
 import '../widgets/platform_widget.dart';
 import 'article_list_page.dart';
@@ -36,8 +39,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
-      body:
-          _bottomNavIndex == 0 ? const ArticleListPage() : const SettingsPage(),
+      body: _listWidget[_bottomNavIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: _bottomNavbarItems,
         selectedItemColor: secondaryColor,
@@ -57,13 +59,16 @@ class _HomePageState extends State<HomePage> {
         items: _bottomNavbarItems,
       ),
       tabBuilder: (context, index) {
-        switch (index) {
-          case 1:
-            return const SettingsPage();
-          default:
-            return const ArticleListPage();
-        }
+        return _listWidget[_bottomNavIndex];
       },
     );
   }
+
+  final List<Widget> _listWidget = [
+    ChangeNotifierProvider<NewsProvider>(
+      create: (_) => NewsProvider(apiService: ApiService()),
+      child: const ArticleListPage(),
+    ),
+    const SettingsPage()
+  ];
 }
