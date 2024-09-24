@@ -15,3 +15,4 @@
 13. provider_exercise_app
 14. simple_http_request
 15. news_http_app
+16. news_provider_app
