@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.lutfialdri.notification_theory"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 34
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
