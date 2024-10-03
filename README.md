@@ -18,3 +18,4 @@
 16. news_provider_app
 17. notification_theory
 18. simple_android_alarm_manager
+19. news_notif_app

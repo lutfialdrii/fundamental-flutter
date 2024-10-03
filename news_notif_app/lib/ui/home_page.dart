@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:news_notif_app/data/api/api_service.dart';
 import 'package:news_notif_app/provider/news_provider.dart';
 import 'package:news_notif_app/provider/scheduling_provider.dart';
+import 'package:news_notif_app/ui/article_detail_page.dart';
 import 'package:provider/provider.dart';
 import '../common/styles.dart';
+import '../utils/notification_helper.dart';
 import '../widgets/platform_widget.dart';
 import 'article_list_page.dart';
 import 'settings_page.dart';
@@ -19,15 +21,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final NotificationHelper _notificationHelper = NotificationHelper();
   @override
   void initState() {
     super.initState();
-    
+    _notificationHelper
+        .configureSelectNotificationSubject(ArticleDetailPage.routeName);
   }
 
   @override
   void dispose() {
     super.dispose();
+    selectedNotificationSubject.close();
   }
 
   int _bottomNavIndex = 0;

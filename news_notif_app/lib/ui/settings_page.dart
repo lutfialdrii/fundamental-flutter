@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:news_notif_app/provider/scheduling_provider.dart';
 import 'package:news_notif_app/widgets/custom_dialog.dart';

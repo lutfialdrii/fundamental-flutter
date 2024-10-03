@@ -84,15 +84,15 @@ class NotificationHelper {
       platformChannelSpecifics,
       payload: jsonEncode(articles.toJson()),
     );
+  }
 
-    void configureSelectNotificationSubject(String route) {
-      selectedNotificationSubject.stream.listen(
-        (String payload) async {
-          var data = ArticlesResult.fromJson(json.decode(payload));
-          var article = data.articles[0];
-          Navigation.intentWithData(route, article);
-        },
-      );
-    }
+  void configureSelectNotificationSubject(String route) {
+    selectedNotificationSubject.stream.listen(
+      (String payload) async {
+        var data = ArticlesResult.fromJson(json.decode(payload));
+        var article = data.articles[0];
+        Navigation.intentWithData(route, article);
+      },
+    );
   }
 }
