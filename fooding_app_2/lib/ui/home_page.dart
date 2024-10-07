@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fooding_http_app/common/styles.dart';
+import 'package:fooding_http_app/data/api/api_service.dart';
+import 'package:fooding_http_app/provider/get_restaurants_provider.dart';
 import 'package:fooding_http_app/ui/restaurant_list_page.dart';
 import 'package:fooding_http_app/ui/setting_page.dart';
 import 'package:fooding_http_app/widgets/platform_widget.dart';
 import 'dart:io';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -31,18 +34,17 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          items: _bottomNavbarItems,
-          selectedItemColor: secondaryColor,
-          onTap: (value) {
-            setState(() {
-              _bottomNavIndex = value;
-            });
-          },
-        ),
-        body: _bottomNavIndex == 0
-            ? const RestaurantListPage()
-            : const SettingPage());
+      bottomNavigationBar: BottomNavigationBar(
+        items: _bottomNavbarItems,
+        selectedItemColor: secondaryColor,
+        onTap: (value) {
+          setState(() {
+            _bottomNavIndex = value;
+          });
+        },
+      ),
+      body: _listWidget[_bottomNavIndex],
+    );
   }
 
   Widget _buildIos(BuildContext context) {
@@ -52,13 +54,18 @@ class _HomePageState extends State<HomePage> {
         activeColor: secondaryColor,
       ),
       tabBuilder: (context, index) {
-        switch (index) {
-          case 1:
-            return const SettingPage();
-          default:
-            return const RestaurantListPage();
-        }
+        return _listWidget[_bottomNavIndex];
       },
     );
   }
+
+  final List<Widget> _listWidget = [
+    ChangeNotifierProvider<RestaurantsProvider>(
+      create: (context) => RestaurantsProvider(
+        apiService: ApiService(),
+      ),
+      child: const RestaurantListPage(),
+    ),
+    const SettingPage()
+  ];
 }
