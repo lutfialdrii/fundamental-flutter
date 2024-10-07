@@ -9,43 +9,55 @@ class ApiService {
 
   // Get List Restaurants
   Future<List<Restaurant>> getListRestaurants() async {
-    const String url = '$_baseUrl/list';
-    final response = await http.get(Uri.parse(url));
+    try {
+      const String url = '$_baseUrl/list';
+      final response = await http.get(Uri.parse(url));
 
-    if (response.statusCode == 200) {
-      final rawData = GetRestaurantsResponse.fromJson(response.body);
-      final data = rawData.restaurants;
-      return data;
-    } else {
-      throw Exception('Failed to load list restaurants');
+      if (response.statusCode == 200) {
+        final rawData = GetRestaurantsResponse.fromJson(response.body);
+        final data = rawData.restaurants;
+        return data;
+      } else {
+        throw Exception('Failed to load list restaurants');
+      }
+    } catch (e) {
+      throw Exception('Somethimg went wrong $e');
     }
   }
 
   // Get Detail Restaurant
   Future<GetDetailRestaurantResponse> getDetailRestaurant(String id) async {
-    String url = '$_baseUrl/detail/$id';
-    final response = await http.get(Uri.parse(url));
+    try {
+      String url = '$_baseUrl/detail/$id';
+      final response = await http.get(Uri.parse(url));
 
-    if (response.statusCode == 200) {
-      final data = GetDetailRestaurantResponse.fromJson(response.body);
-      return data;
-    } else {
-      throw Exception('Failed to load detail restaurant');
+      if (response.statusCode == 200) {
+        final data = GetDetailRestaurantResponse.fromJson(response.body);
+        return data;
+      } else {
+        throw Exception('Failed to load detail restaurant');
+      }
+    } catch (e) {
+      throw Exception('Somethimg went wrong $e');
     }
   }
 
   // Search Restaurant
   Future<List<Restaurant>> searchRestaurants(String query) async {
-    String url = '$_baseUrl/search?q=$query';
-    final response = await http.get(Uri.parse(url));
+    try {
+      String url = '$_baseUrl/search?q=$query';
+      final response = await http.get(Uri.parse(url));
 
-    if (response.statusCode == 200) {
-      final rawData =
-          search.GetSearchRestaurantResponse.fromJson(response.body);
-      final data = rawData.restaurants;
-      return data;
-    } else {
-      throw Exception('Failed to get result');
+      if (response.statusCode == 200) {
+        final rawData =
+            search.GetSearchRestaurantResponse.fromJson(response.body);
+        final data = rawData.restaurants;
+        return data;
+      } else {
+        throw Exception('Failed to get result');
+      }
+    } catch (e) {
+      throw Exception('Somethimg went wrong $e');
     }
   }
 }
