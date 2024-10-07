@@ -63,15 +63,15 @@ class RestaurantListPage extends StatelessWidget {
                 return CardRestaurant(restaurant: restaurant);
               });
         } else if (value.state == ResultState.noData) {
-          return Center(
+          return const Center(
             child: Material(
-              child: Text(value.message),
+              child: Text('Tidak ada data Restaurant'),
             ),
           );
         } else {
           return const Center(
             child: Material(
-              child: Text(''),
+              child: Text('Terjadi Kesalahan, perikasi koneksi internet anda!'),
             ),
           );
         }

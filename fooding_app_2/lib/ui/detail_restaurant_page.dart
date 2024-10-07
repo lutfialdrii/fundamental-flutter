@@ -219,10 +219,8 @@ class DetailRestaurantPage extends StatelessWidget {
               ),
             );
           } else {
-            return const Center(
-              child: Material(
-                child: Text(''),
-              ),
+            return const Scaffold(
+              body: Center(child: Text('Terjadi Kesalahan!'),),
             );
           }
         },

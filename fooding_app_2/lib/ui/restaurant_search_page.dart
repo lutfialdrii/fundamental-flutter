@@ -55,15 +55,15 @@ class RestaurantSearchPage extends SearchDelegate {
                 });
           } else if (value.state == ResultState.noData) {
             return const Center(
-              child: Text('Restaurant not found :('),
+              child: Text('Tidak ada data restaurant'),
             );
           } else if (value.state == ResultState.error) {
-            return Center(
-              child: Text('Something went wrong! ${value.message}'),
+            return const Center(
+              child: Text('Terjadi Kesalahan!, perikasi koneksi internet anda!'),
             );
           } else {
-            return const Material(
-              child: Text(''),
+            return const Center(
+              child: Text('Terjadi Kesalahan!'),
             );
           }
         },
