@@ -1,15 +1,12 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_bookmark_app/data/api/api_service.dart';
-import 'package:news_bookmark_app/provider/news_provider.dart';
-import 'package:news_bookmark_app/provider/scheduling_provider.dart';
 import 'package:news_bookmark_app/ui/article_detail_page.dart';
-import 'package:provider/provider.dart';
 import '../common/styles.dart';
 import '../utils/notification_helper.dart';
 import '../widgets/platform_widget.dart';
 import 'article_list_page.dart';
+import 'bookmarks_page.dart';
 import 'settings_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -49,6 +46,11 @@ class _HomePageState extends State<HomePage> {
       label: 'Headline',
     ),
     BottomNavigationBarItem(
+      icon: Icon(
+          Platform.isIOS ? CupertinoIcons.bookmark : Icons.bookmark_outline),
+      label: 'Bookmarks',
+    ),
+    BottomNavigationBarItem(
       icon: Icon(Platform.isIOS ? CupertinoIcons.settings : Icons.settings),
       label: 'Settings',
     ),
@@ -82,13 +84,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   final List<Widget> _listWidget = [
-    ChangeNotifierProvider<NewsProvider>(
-      create: (_) => NewsProvider(apiService: ApiService()),
-      child: const ArticleListPage(),
-    ),
-    ChangeNotifierProvider<SchedulingProvider>(
-      create: (_) => SchedulingProvider(),
-      child: const SettingsPage(),
-    )
+    const ArticleListPage(),
+    const BookmarksPage(),
+    const SettingsPage(),
   ];
 }

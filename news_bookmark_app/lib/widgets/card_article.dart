@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_bookmark_app/common/navigation.dart';
 
-import '../common/styles.dart';
 import '../data/model/article_result.dart';
 import '../ui/article_detail_page.dart';
 
@@ -12,7 +11,6 @@ class CardArticle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: primaryColor,
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: Hero(
