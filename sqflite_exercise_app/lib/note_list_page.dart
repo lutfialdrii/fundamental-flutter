@@ -24,14 +24,22 @@ class NoteListPage extends StatelessWidget {
                 key: Key(note.id.toString()),
                 background: Container(color: Colors.red),
                 onDismissed: (direction) {
-                  // TODO : Kode untuk menghapus note
+                  provider.deleteNote(note.id!);
                 },
                 child: Card(
                   child: ListTile(
                     title: Text(note.title),
                     subtitle: Text(note.description),
                     onTap: () async {
-                      // TODO : Kode untuk mendapatkan note yang dipilih dan dikirimkan ke NoteAddUpdatePage
+                      final navigator = Navigator.of(context);
+
+                      final selectedNote = await provider.getNoteById(note.id!);
+
+                      navigator.push(MaterialPageRoute(
+                        builder: (context) => NoteAddUpdatePage(
+                          note: selectedNote,
+                        ),
+                      ));
                     },
                   ),
                 ),
@@ -43,8 +51,10 @@ class NoteListPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const NoteAddUpdatePage()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const NoteAddUpdatePage()));
         },
       ),
     );

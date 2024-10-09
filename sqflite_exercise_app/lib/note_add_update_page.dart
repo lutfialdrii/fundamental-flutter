@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:local_db/db_provider.dart';
 import 'package:local_db/note.dart';
+import 'package:provider/provider.dart';
 
 class NoteAddUpdatePage extends StatefulWidget {
   final Note? note;
@@ -51,7 +53,25 @@ class _NoteAddUpdatePageState extends State<NoteAddUpdatePage> {
               child: ElevatedButton(
                 child: const Text('Simpan'),
                 onPressed: () async {
-                  // TODO : Tambahkan kode untuk menyimpan atau mengedit note
+                  if (!_isUpdate) {
+                    final note = Note(
+                      title: _titleController.text,
+                      description: _descriptionController.text,
+                    );
+
+                    Provider.of<DbProvider>(context, listen: false)
+                        .addNote(note);
+                  } else {
+                    final note = Note(
+                      id: widget.note!.id,
+                      title: _titleController.text,
+                      description: _descriptionController.text,
+                    );
+
+                    Provider.of<DbProvider>(context).updateNote(note);
+                  }
+
+                  Navigator.pop(context);
                 },
               ),
             )
