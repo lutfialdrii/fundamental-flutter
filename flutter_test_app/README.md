@@ -1,4 +1,4 @@
-# dicodingacademy
+# fluttertest
 
 A new Flutter application.
 

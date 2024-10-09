@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dicoding.dicodingacademy">
+    package="com.lutfi.fluttertest">
    <application
-        android:label="dicodingacademy"
+        android:label="fluttertest"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

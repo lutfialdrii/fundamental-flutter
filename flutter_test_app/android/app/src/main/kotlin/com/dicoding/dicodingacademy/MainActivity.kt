@@ -1,4 +1,4 @@
-package com.dicoding.dicodingacademy
+package com.lutfi.fluttertest
 
 import io.flutter.embedding.android.FlutterActivity
 
