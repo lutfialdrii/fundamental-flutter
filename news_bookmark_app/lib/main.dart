@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:news_bookmark_app/common/navigation.dart';
 import 'package:news_bookmark_app/data/api/api_service.dart';
+import 'package:news_bookmark_app/data/db/database_helper.dart';
 import 'package:news_bookmark_app/helper/preferences_helper.dart';
+import 'package:news_bookmark_app/provider/database_provider.dart';
 import 'package:news_bookmark_app/provider/news_provider.dart';
 import 'package:news_bookmark_app/provider/preferences_provider.dart';
 import 'package:news_bookmark_app/provider/scheduling_provider.dart';
@@ -58,27 +60,14 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        ChangeNotifierProvider(
+          create: (context) =>
+              DatabaseProvider(databaseHelper: DatabaseHelper()),
+        )
       ],
       child: Consumer<PreferencesProvider>(builder: (context, provider, child) {
         return MaterialApp(
           title: 'News App',
-          // theme: ThemeData(
-          //   colorScheme: Theme.of(context).colorScheme.copyWith(
-          //         primary: primaryColor,
-          //         onPrimary: Colors.black,
-          //         secondary: secondaryColor,
-          //       ),
-          //   textTheme: myTextTheme,
-          //   appBarTheme: const AppBarTheme(elevation: 0),
-          //   elevatedButtonTheme: ElevatedButtonThemeData(
-          //     style: ElevatedButton.styleFrom(
-          //         backgroundColor: secondaryColor,
-          //         foregroundColor: Colors.white,
-          //         textStyle: const TextStyle(),
-          //         shape: const RoundedRectangleBorder(
-          //             borderRadius: BorderRadius.all(Radius.circular(0)))),
-          //   ),
-          // ),
           theme: provider.themeData,
           builder: (context, child) {
             return CupertinoTheme(

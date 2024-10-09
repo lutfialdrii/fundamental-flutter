@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_bookmark_app/provider/news_provider.dart';
 import 'package:provider/provider.dart';
 import '../common/styles.dart';
+import '../utils/result_state.dart';
 import '../widgets/card_article.dart';
 import '../widgets/platform_widget.dart';
 
@@ -80,39 +81,4 @@ class _ArticleListPageState extends State<ArticleListPage> {
       },
     );
   }
-
-  // FutureBuilder<ArticlesResult> _buildList(BuildContext context) {
-  //   return FutureBuilder<ArticlesResult>(
-  //     future: _articles,
-  //     builder: (context, snapshot) {
-  //       if (snapshot.connectionState != ConnectionState.done) {
-  //         return const Center(
-  //             child: CircularProgressIndicator(
-  //           color: secondaryColor,
-  //         ));
-  //       } else {
-  //         if (snapshot.hasData) {
-  //           return ListView.builder(
-  //             shrinkWrap: true,
-  //             itemCount: snapshot.data?.articles.length,
-  //             itemBuilder: (context, index) {
-  //               var article = snapshot.data!.articles[index];
-  //               return CardArticle(article: article);
-  //             },
-  //           );
-  //         } else if (snapshot.hasError) {
-  //           return Center(
-  //             child: Material(
-  //               child: Text(snapshot.error.toString()),
-  //             ),
-  //           );
-  //         } else {
-  //           return const Material(
-  //             child: Text(''),
-  //           );
-  //         }
-  //       }
-  //     },
-  //   );
-  // }
 }

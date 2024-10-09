@@ -2,7 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:news_bookmark_app/data/api/api_service.dart';
 import 'package:news_bookmark_app/data/model/article_result.dart';
 
-enum ResultState { loading, noData, hasData, error }
+import '../utils/result_state.dart';
+
 
 class NewsProvider extends ChangeNotifier {
   final ApiService apiService;
