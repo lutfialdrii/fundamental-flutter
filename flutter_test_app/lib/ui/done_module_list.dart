@@ -12,6 +12,7 @@ class DoneModuleList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Done Module List'),
+        key: Key('done_page_button'),
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
