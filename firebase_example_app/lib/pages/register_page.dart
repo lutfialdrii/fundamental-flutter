@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -10,6 +11,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _auth = FirebaseAuth.instance;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -32,13 +34,13 @@ class _RegisterPageState extends State<RegisterPage> {
               tag: 'Dicoding Chatting',
               child: Text(
                 'Dicoding Chatting',
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
             ),
             const SizedBox(height: 24.0),
             Text(
               'Create your account',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 8.0),
             TextField(
@@ -75,7 +77,30 @@ class _RegisterPageState extends State<RegisterPage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
-              onPressed: () {},
+              onPressed: () async {
+                setState(() {
+                  _isLoading = true;
+                });
+
+                try {
+                  final navigator = Navigator.of(context);
+                  final email = _emailController.text;
+                  final password = _passwordController.text;
+
+                  await _auth.createUserWithEmailAndPassword(
+                    email: email,
+                    password: password,
+                  );
+                  navigator.pop();
+                } catch (e) {
+                  final snackbar = SnackBar(content: Text(e.toString()));
+                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                } finally {
+                  setState(() {
+                    _isLoading = false;
+                  });
+                }
+              },
               child: const Text('Register'),
             ),
             TextButton(

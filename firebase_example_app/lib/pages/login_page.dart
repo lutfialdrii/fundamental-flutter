@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_example/pages/chat_page.dart';
 import 'package:firebase_example/pages/register_page.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _auth = FirebaseAuth.instance;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -34,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
               tag: 'Dicoding Chatting',
               child: Text(
                 'Dicoding Chatting',
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
             ),
             const SizedBox(height: 24.0),
@@ -72,8 +74,28 @@ class _LoginPageState extends State<LoginPage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
-              onPressed: () =>
-                  Navigator.pushReplacementNamed(context, ChatPage.id),
+              onPressed: () async {
+                setState(() {
+                  _isLoading = true;
+                });
+                try {
+                  final navigator = Navigator.of(context);
+                  final email = _emailController.text;
+                  final password = _passwordController.text;
+
+                  await _auth.signInWithEmailAndPassword(
+                      email: email, password: password);
+                  navigator.pushReplacementNamed(ChatPage.id);
+                } catch (e) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(e.toString())));
+                } finally {
+                  setState(() {
+                    _isLoading = false;
+                  });
+                }
+                Navigator.pushReplacementNamed(context, ChatPage.id);
+              },
               child: const Text('Login'),
             ),
             TextButton(

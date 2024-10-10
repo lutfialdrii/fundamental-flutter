@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "642018275450",
+    "project_id": "dicoding-first-project-a68b5",
+    "storage_bucket": "dicoding-first-project-a68b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642018275450:android:c73b44dc41bf80202dcbc3",
+        "android_client_info": {
+          "package_name": "com.lutfi.firebase_example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9lZ-vFmUvX38h00xW5xFMx91VamUPZ-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
