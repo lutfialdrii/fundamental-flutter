@@ -5,6 +5,7 @@ import 'package:fooding_final_app/ui/restaurant_search_page.dart';
 import 'package:fooding_final_app/widgets/card_restaurant.dart';
 import 'package:provider/provider.dart';
 import '../data/model/get_restaurants_response.dart';
+import '../utils/result_state.dart';
 
 class RestaurantListPage extends StatelessWidget {
   const RestaurantListPage({super.key});
@@ -38,31 +39,36 @@ class RestaurantListPage extends StatelessWidget {
         onPressed: () {
           showSearch(context: context, delegate: RestaurantSearchPage());
         },
-        child: const Icon(Icons.search),
+        backgroundColor: secondaryColor,
+        child: const Icon(
+          Icons.search,
+          color: primaryColor,
+        ),
       ),
     );
   }
 
   Widget _buildList() {
     return Consumer<RestaurantsProvider>(
-      builder: (context, value, child) {
-        if (value.state == ResultState.loading) {
+      builder: (context, provider, child) {
+        if (provider.state == ResultState.loading) {
           return const Center(
             child: CircularProgressIndicator(
               color: secondaryColor,
             ),
           );
-        } else if (value.state == ResultState.hasData) {
-          final listRestaurants = value.restaurants;
+        } else if (provider.state == ResultState.hasData) {
+          final listRestaurants = provider.restaurants;
           return ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: listRestaurants.length,
-              itemBuilder: (context, index) {
-                final Restaurant restaurant = listRestaurants[index];
-                return CardRestaurant(restaurant: restaurant);
-              });
-        } else if (value.state == ResultState.noData) {
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: listRestaurants.length,
+            itemBuilder: (context, index) {
+              final Restaurant restaurant = listRestaurants[index];
+              return CardRestaurant(restaurant: restaurant);
+            },
+          );
+        } else if (provider.state == ResultState.noData) {
           return const Center(
             child: Material(
               child: Text('Tidak ada data Restaurant'),

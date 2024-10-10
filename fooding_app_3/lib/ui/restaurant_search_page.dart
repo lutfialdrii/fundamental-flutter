@@ -5,6 +5,7 @@ import 'package:fooding_final_app/provider/get_search_restaurants_provider.dart'
 import 'package:fooding_final_app/widgets/card_restaurant.dart';
 import 'package:provider/provider.dart';
 import '../data/model/get_restaurants_response.dart';
+import '../utils/result_state.dart';
 
 class RestaurantSearchPage extends SearchDelegate {
   @override

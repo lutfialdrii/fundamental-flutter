@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fooding_final_app/common/styles.dart';
-import 'package:fooding_final_app/data/api/api_service.dart';
-import 'package:fooding_final_app/provider/get_restaurants_provider.dart';
 import 'package:fooding_final_app/ui/restaurant_list_page.dart';
 import 'package:fooding_final_app/ui/setting_page.dart';
 import 'package:fooding_final_app/widgets/platform_widget.dart';
 import 'dart:io';
-import 'package:provider/provider.dart';
+
+import 'favorites_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,8 +26,14 @@ class _HomePageState extends State<HomePage> {
     BottomNavigationBarItem(
         icon: Icon(Platform.isIOS ? CupertinoIcons.home : Icons.home),
         label: 'Home'),
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.favorite),
+      label: 'Favorites',
+    ),
     BottomNavigationBarItem(
-        icon: Icon(Platform.isIOS ? CupertinoIcons.settings : Icons.settings),
+        icon: Icon(
+          Platform.isIOS ? CupertinoIcons.settings : Icons.settings,
+        ),
         label: 'Settings')
   ];
 
@@ -37,6 +42,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: _bottomNavbarItems,
         selectedItemColor: secondaryColor,
+        unselectedItemColor: Colors.grey,
         onTap: (value) {
           setState(() {
             _bottomNavIndex = value;
@@ -60,12 +66,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   final List<Widget> _listWidget = [
-    ChangeNotifierProvider<RestaurantsProvider>(
-      create: (context) => RestaurantsProvider(
-        apiService: ApiService(),
-      ),
-      child: const RestaurantListPage(),
-    ),
-    const SettingPage()
+    const RestaurantListPage(),
+    const FavoritesPage(),
+    const SettingPage(),
   ];
 }

@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:fooding_final_app/data/api/api_service.dart';
 import '../data/model/get_restaurants_response.dart';
-
-enum ResultState { loading, noData, hasData, error }
+import '../utils/result_state.dart';
 
 class GetSearchRestaurantsProvider extends ChangeNotifier {
   final ApiService apiService;

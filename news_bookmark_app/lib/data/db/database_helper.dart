@@ -66,7 +66,6 @@ class DatabaseHelper {
 
   Future<void> removeBookmark(String url) async {
     final db = await database;
-
     await db!.delete(_tableBookmark, where: 'url = ?', whereArgs: [url]);
   }
 }
