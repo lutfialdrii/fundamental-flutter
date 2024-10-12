@@ -27,3 +27,5 @@ Untuk kebutuhan Dokumentasi Kelas Belajar Fundamental Aplikasi Flutter di Dicodi
 25. flutter_test_app
 26. firebase_example_app
 27. fooding_app_3 - final submission
+
+```Flutter Version : 3.24.3```
