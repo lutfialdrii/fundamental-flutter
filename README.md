@@ -1,4 +1,4 @@
-# fundamental-flutter
+# Fundamental Flutter
 Untuk kebutuhan Dokumentasi Kelas Belajar Fundamental Aplikasi Flutter di Dicoding
 1. nav_routing_app
 2. news_app
