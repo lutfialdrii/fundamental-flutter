@@ -7,6 +7,7 @@ import 'package:fooding_final_app/provider/get_detail_restaurant_provider.dart';
 import 'package:provider/provider.dart';
 import '../data/model/get_restaurants_response.dart';
 import '../utils/result_state.dart';
+import 'package:http/http.dart' as http;
 
 class DetailRestaurantPage extends StatelessWidget {
   final Restaurant restaurant;
@@ -16,7 +17,7 @@ class DetailRestaurantPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<GetDetailRestaurantProvider>(
       create: (context) => GetDetailRestaurantProvider(
-          apiService: ApiService(), id: restaurant.id),
+          apiService: ApiService(client: http.Client()), id: restaurant.id),
       child: Consumer<GetDetailRestaurantProvider>(
         builder: (BuildContext context, GetDetailRestaurantProvider value,
             Widget? child) {

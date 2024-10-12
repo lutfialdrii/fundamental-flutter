@@ -6,6 +6,7 @@ import 'package:fooding_final_app/widgets/card_restaurant.dart';
 import 'package:provider/provider.dart';
 import '../data/model/get_restaurants_response.dart';
 import '../utils/result_state.dart';
+import 'package:http/http.dart' as http;
 
 class RestaurantSearchPage extends SearchDelegate {
   @override
@@ -33,7 +34,7 @@ class RestaurantSearchPage extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     return ChangeNotifierProvider<GetSearchRestaurantsProvider>(
       create: (context) => GetSearchRestaurantsProvider(
-        apiService: ApiService(),
+        apiService: ApiService(client: http.Client()),
         query: query,
       ),
       child: Consumer<GetSearchRestaurantsProvider>(
